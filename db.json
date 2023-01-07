@@ -20,7 +20,7 @@
     },
     {
       "content": "React is easier to learn",
-      "important": true,
+      "important": false,
       "id": 4
     },
     {
@@ -42,6 +42,21 @@
       "content": "hiii",
       "important": false,
       "id": 8
+    },
+    {
+      "content": "added new note",
+      "important": false,
+      "id": 9
+    },
+    {
+      "content": "this time something new",
+      "important": true,
+      "id": 10
+    },
+    {
+      "content": "new item",
+      "important": true,
+      "id": 11
     }
   ]
 }
