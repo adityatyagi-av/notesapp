@@ -1,6 +1,7 @@
 // import { eventWrapper } from '@testing-library/user-event/dist/utils'
 import axios from 'axios'
 import React,{useState, useEffect} from 'react'
+import noteServices from './note'
 
 const Note =({note,toggleImportance})=>{
     const label=note.important
@@ -20,12 +21,11 @@ export default function Notes() {
     const [showAll, setShowAll] = useState(true)
         useEffect(() => {
           console.log('effect')
-            const eventHandler=response=>{
-                console.log('promise fulfilled')
-                setNotes(response.data)
-            }
-           const Promise= axios.get('http://localhost:3001/notes')
-            Promise.then(eventHandler)
+          noteServices
+          .getAll()
+          .then(response => {
+            setNotes(response.data)
+          }) 
         }, [])
         
     console.log('render',notes.length,'notes')
@@ -39,12 +39,12 @@ export default function Notes() {
 
 //toggle importance
     const toggleImportanceOf =(id)=>{
-        const url=`http://localhost:3001/notes/${id}`
-        const note=notes.find(n=> n.id ===id)
+           const note=notes.find(n=> n.id ===id)
         const changedNote={...note,important: !note.important}
         console.log(changedNote)
         
-        axios.put(url,changedNote)
+        noteServices
+        .update(id,changedNote)
         .then(response=>{
             setNotes(notes.map(n=>n.id !==id ? n: response.data))
         })
@@ -61,9 +61,9 @@ export default function Notes() {
             
         }
 
-        axios
-            .post('http://localhost:3001/notes',noteObject)
-            .then(response=>{
+        noteServices
+        .create(noteObject)
+        .then(response=>{
                 console.log(response)
                 setNotes(notes.concat(noteObject))
                 setNewNote('')
