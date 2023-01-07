@@ -1,5 +1,6 @@
 // import { eventWrapper } from '@testing-library/user-event/dist/utils'
-import React,{useState} from 'react'
+import axios from 'axios'
+import React,{useState, useEffect} from 'react'
 
 const Note =({note})=>{
     return(
@@ -7,12 +8,26 @@ const Note =({note})=>{
     )
 }
 
-export default function Notes(props) {
-    const [notes, setNotes] = useState(props.notes)
+export default function Notes() {
+    const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState(
         'a new note'
     )
     const [showAll, setShowAll] = useState(true)
+        useEffect(() => {
+          console.log('effect')
+            const eventHandler=response=>{
+                console.log('promise fulfilled')
+                setNotes(response.data)
+            }
+           const Promise= axios.get('http://localhost:3001/notes')
+            Promise.then(eventHandler)
+        }, [])
+        
+    console.log('render',notes.length,'notes')
+    
+
+
 
     const notesToShow = showAll
     ? notes
