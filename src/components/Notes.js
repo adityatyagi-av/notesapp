@@ -39,7 +39,6 @@ export default function Notes() {
 
 //toggle importance
     const toggleImportanceOf =(id)=>{
-        const url=`http://localhost:3001/notes/${id}`
         const note=notes.find(n=> n.id ===id)
         const changedNote={...note,important: !note.important}
         console.log(changedNote)
@@ -48,6 +47,10 @@ export default function Notes() {
         .update(id,changedNote)
         .then(returnedNote=>{
             setNotes(notes.map(n=>n.id !==id ? n: returnedNote))
+        })
+        .catch(error=>{
+            alert(`the note '${note.content}' was already deleted from server`)
+            setNotes(notes.filter(n=>n.id !==id))
         })
     }
 
