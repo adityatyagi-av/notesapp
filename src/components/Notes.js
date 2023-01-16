@@ -1,5 +1,5 @@
 // import { eventWrapper } from '@testing-library/user-event/dist/utils'
-import axios from 'axios'
+import '../index.css'
 import React,{useState, useEffect} from 'react'
 import noteServices from './note'
 
@@ -7,7 +7,7 @@ const Note =({note,toggleImportance})=>{
     const label=note.important
     ?'make not important':'make important'
     return(
-        <li>{note.content}
+        <li className='note'>{note.content}
         <button onClick={toggleImportance}>{label}</button>
         </li>
     )

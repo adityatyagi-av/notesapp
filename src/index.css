@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* *{
+  margin: 0px;
+  padding: 0px;
+} */
+h1{
+  color: blue;
+  font-style: italic;
+  margin: 5px;
+}
+.note{
+  color: grey;
+  padding-top: 3px;
+  font-size: 15px;
+}
