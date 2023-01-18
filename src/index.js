@@ -8,7 +8,7 @@ import Notes from './components/Notes';
 // axios.get('http://localhost:3001/notes')
 // const promise2=axios.get('http://localhost:3001/foobar')
 axios
-  .get('http://localhost:3001/notes')
+  .get('http://localhost:3001/api/notes')
   .then(response=>{
    const notes = response.data
    console.log(notes)
