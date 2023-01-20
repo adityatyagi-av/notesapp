@@ -19,9 +19,11 @@ h1{
   color: blue;
   font-style: italic;
   margin: 5px;
+  text-align: center;
 }
 .note{
   color: grey;
   padding-top: 3px;
   font-size: 15px;
+  padding-left: 12px;
 }
